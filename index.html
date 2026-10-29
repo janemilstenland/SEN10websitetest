@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCM and Software Testing | SEN02 Study Site</title>
+  <meta name="description" content="A study guide on Software Configuration Management and Software Testing and Quality Assurance.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%82%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/quality.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#top">SCM<span>.study</span></a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button>
+    <nav id="siteNav" class="site-nav" aria-label="Main">
+      <a href="#overview">Overview</a>
+      <a href="#why">Why SCM</a>
+      <a href="#people">People</a>
+      <a href="#parts">Parts</a>
+      <a href="#framework">Framework</a>
+      <a href="#build">Build</a>
+      <a href="#planning">Planning</a>
+      <a href="#tools">Tools</a>
+      <a href="#testing">Testing</a>
+      <a href="#tdd">TDD</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Software Engineering &middot; SEN02 &middot; BSCS 3-A</p>
+      <h1>Software Configuration Management &amp; Testing</h1>
+      <p class="lead">Managing every piece and part of what we build &mdash; code, documents, tests &mdash; so teams can change software without losing control of it, and test it so it keeps working.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#overview">Start reading</a>
+        <a class="btn btn-ghost" href="#quiz">Test yourself</a>
+      </div>
+      <p class="credit">Based on the class lecture by Andrew Joseph Ramos</p>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="overview" class="section">
+    <div class="container">
+      <h2>Overview</h2>
+      <p class="section-intro">Software Configuration Management (SCM) is the process of managing all the pieces and parts of the artifacts produced during software development and support. Artifacts are code, documentation, tests, and so on.</p>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>More than versions</h3>
+          <p>SCM is not just keeping multiple versions of code or documents. It also involves <strong>planning</strong> and <strong>tools</strong>.</p>
+        </article>
+        <article class="card">
+          <h3>Guidelines &amp; standards</h3>
+          <p>The IEEE Guide to SCM (Std. 1042&ndash;1987) and NASA&rsquo;s SCM Guidebook are examples. SCM is also a key process of the SEI&rsquo;s Capability Maturity Model (CMM).</p>
+        </article>
+        <article class="card">
+          <h3>Maturity levels</h3>
+          <p>CMM defines an increasing series of levels for an organization. The higher the level, the better the process, but reaching each level is expensive and time-consuming.</p>
+        </article>
+      </div>
+
+      <h3 class="subhead">Learning objectives</h3>
+      <ol class="objectives">
+        <li>Describe SCM in the context of the software engineering process.</li>
+        <li>Identify the models included in the configuration management framework.</li>
+        <li>Describe the activities of a software build and integration process.</li>
+        <li>Identify several automation tools for configuration management.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- WHY SCM -->
+  <section id="why" class="section alt">
+    <div class="container">
+      <h2>Why we need SCM</h2>
+      <div class="grid grid-3">
+        <article class="card">
+          <span class="icon" aria-hidden="true">👥</span>
+          <h3>Many people, many changes</h3>
+          <p>Several people work on software that is continually updating. Versions, branches and authors multiply, and teams are often geographically distributed and working concurrently.</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true">🔄</span>
+          <h3>Change is constant</h3>
+          <p>User requirements, policy, budget and schedule all change and must be accommodated.</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true">💻</span>
+          <h3>Many environments &amp; costs</h3>
+          <p>Software may need to run on various machines and operating systems. SCM also helps control the cost of making changes to a system.</p>
+        </article>
+      </div>
+
+      <h3 class="subhead">SCM activities</h3>
+      <ol class="steps">
+        <li><strong>Understand</strong> the policy, process activities and the resulting artifacts to be managed.</li>
+        <li><strong>Define</strong> the framework used to manage those artifacts.</li>
+        <li><strong>Bring in</strong> the tools needed to facilitate the management.</li>
+        <li><strong>Train</strong> the team and ensure the agreed process is practiced and followed.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section id="people" class="section">
+    <div class="container">
+      <h2>SCM participants</h2>
+      <p class="section-intro">Four roles take part in SCM. Select a role to see what it is responsible for.</p>
+
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="SCM participants">
+          <button type="button" role="tab">Project Manager</button>
+          <button type="button" role="tab">Configuration Manager</button>
+          <button type="button" role="tab">Developer</button>
+          <button type="button" role="tab">User</button>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <h3>Project Manager</h3>
+          <ul>
+            <li>Ensures the product is developed on schedule.</li>
+            <li>Monitors the progress and issues in the SCM process.</li>
+            <li>Makes sure processes and policies are followed.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <h3>Configuration Manager</h3>
+          <ul>
+            <li>Responsible for identifying configuration items.</li>
+            <li>Ensures the team follows the SCM process.</li>
+            <li>Approves or rejects change requests.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <h3>Developer</h3>
+          <ul>
+            <li>Changes the code per change request and maintains the configuration of the code.</li>
+            <li>Checks for changes and resolves any conflicts.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <h3>User</h3>
+          <ul>
+            <li>Should have a basic understanding of key SCM terms and processes to ensure proper usage, e.g. having the latest version of the software.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTS -->
+  <section id="parts" class="section alt">
+    <div class="container">
+      <h2>SCM parts: what gets managed?</h2>
+      <p class="section-intro">Which pieces need managing depends on the process. A conservative organization building large, complex software may use full waterfall with inspections after every major activity. A small Agile organization may emphasize only a few activities, such as requirements and coding. Either way, the parts fall into three groups.</p>
+
+      <div class="grid grid-3">
+        <article class="card accent-1">
+          <h3>1. Artifacts</h3>
+          <ul class="chips">
+            <li>Requirements specification</li>
+            <li>Design specification</li>
+            <li>Source code</li>
+            <li>Executable code</li>
+            <li>Test cases</li>
+          </ul>
+          <p class="note">Source code may include logic or pseudocode, database tables and user screen scripts.</p>
+        </article>
+        <article class="card accent-2">
+          <h3>2. Policy impact</h3>
+          <p>A business policy can reshape how artifacts are controlled. For example, letting customers stay on French version 2 instead of migrating to version 3, and even update to French version 2.1, forces a development policy and process that greatly influences artifact management. Allowing &ldquo;branching&rdquo; from intermediate artifacts has the same effect.</p>
+        </article>
+        <article class="card accent-3">
+          <h3>3. Process influence</h3>
+          <p>The development and support process also influences how artifacts are managed, as the promotion model below shows.</p>
+        </article>
+      </div>
+
+      <h3 class="subhead">Artifact relationships</h3>
+      <p>Managing versions of artifacts independently is tedious but not very complex. The complexity grows when the <em>relations</em> among artifacts must be controlled, such as:</p>
+      <ul class="chips big">
+        <li>Requirements &harr; test cases</li>
+        <li>Design elements &harr; logic code segments</li>
+        <li>Logic code segments &harr; database tables</li>
+        <li>UI screens &harr; code segments</li>
+        <li>Messages, help texts &harr; source code</li>
+        <li>Test cases &harr; logic code segments</li>
+        <li>Database tables &harr; initialization data</li>
+      </ul>
+      <p>On top of that, one product may have several versions of its requirements: a general version, a variant for a special industry or customer, and country-specific versions (for example French or Japanese).</p>
+
+      <h3 class="subhead">Promotion in a multilevel test process</h3>
+      <div class="flow" aria-label="Promotion levels">
+        <div class="flow-step"><strong>Source code</strong><span>Developed</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Functionally tested</strong><span>Passed functional test</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Component tested</strong><span>Passed component test</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step gold"><strong>System tested</strong><span>&ldquo;Golden&rdquo; copy</span></div>
+      </div>
+      <p class="note">Promotion locks code tested at a given level so it has no opportunity to be regressed.</p>
+    </div>
+  </section>
+
+  <!-- FRAMEWORK -->
+  <section id="framework" class="section">
+    <div class="container">
+      <h2>Configuration management framework</h2>
+      <p class="section-intro">Software engineers must establish a framework to control all the piece parts of software artifacts. Policies and processes strongly influence it, and it has two main models: the <strong>naming model</strong> and the <strong>storage and access model</strong>.</p>
+
+      <h3 class="subhead">Naming model</h3>
+      <p>To control the pieces there must be identifiers. A naming model uniquely identifies each artifact and associates related items. It assumes a unique product name, multiple types and forms of artifacts (e.g. spreadsheets), at least two levels of grouping (versions within a release) and translated, multi-country releases.</p>
+      <p>The sample scheme is <code>PP.CC.RRR.VVV.TT.FF</code>. Build one below:</p>
+
+      <div class="builder card">
+        <form id="nameForm" class="builder-form" onsubmit="return false;" novalidate>
+          <label>PP &middot; Product code
+            <input id="fPP" type="text" maxlength="2" value="WB" autocomplete="off">
+          </label>
+          <label>CC &middot; Country code
+            <input id="fCC" type="text" maxlength="2" value="PH" autocomplete="off">
+          </label>
+          <label>RRR &middot; Release
+            <input id="fRRR" type="text" inputmode="numeric" maxlength="3" value="1" autocomplete="off">
+          </label>
+          <label>VVV &middot; Version
+            <input id="fVVV" type="text" inputmode="numeric" maxlength="3" value="2" autocomplete="off">
+          </label>
+          <label>TT &middot; Artifact type
+            <select id="fTT">
+              <option value="RQ">RQ &ndash; Requirements spec</option>
+              <option value="DS">DS &ndash; Design spec</option>
+              <option value="SC" selected>SC &ndash; Source code</option>
+              <option value="EX">EX &ndash; Executable</option>
+              <option value="TC">TC &ndash; Test case</option>
+            </select>
+          </label>
+          <label>FF &middot; Format
+            <select id="fFF">
+              <option value="DC">DC &ndash; Document</option>
+              <option value="XL">XL &ndash; Spreadsheet</option>
+              <option value="TX" selected>TX &ndash; Plain text</option>
+              <option value="BN">BN &ndash; Binary</option>
+            </select>
+          </label>
+        </form>
+        <div class="builder-out">
+          <span class="label">Generated identifier</span>
+          <output id="nameOut" for="nameForm" class="mono">WB.PH.001.002.SC.TX</output>
+          <p id="nameExplain" class="note"></p>
+          <button type="button" id="copyName" class="btn btn-small">Copy</button>
+        </div>
+      </div>
+
+      <h3 class="subhead">Storage and access model</h3>
+      <p>Defines the facilities needed to store artifacts and control access to them.</p>
+      <div class="grid grid-3">
+        <article class="card">
+          <h4>Fundamental functions</h4>
+          <ul class="chips"><li>create</li><li>delete</li></ul>
+        </article>
+        <article class="card">
+          <h4>Access facilities</h4>
+          <ul class="chips"><li>view</li><li>modify</li><li>return</li></ul>
+        </article>
+        <article class="card">
+          <h4>Control &amp; service functions</h4>
+          <ul class="chips"><li>import / export</li><li>list</li><li>set, increment, change</li><li>gather / merge</li><li>promote</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILD -->
+  <section id="build" class="section alt">
+    <div class="container">
+      <h2>Build and integration</h2>
+      <p class="section-intro">The build and integration process converts and integrates source files into a set of executable files for a specific execution environment. It has two major steps.</p>
+
+      <div class="flow" aria-label="Build cycle">
+        <div class="flow-step"><strong>Compile</strong><span>Fix errors, resubmit</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Link</strong><span>With external items</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Test &amp; debug</strong><span>Fix and repeat</span></div>
+      </div>
+
+      <p>The <strong>build file</strong> controls the order of: dependency and cross-reference checking, compiling source into executables, linking the executables and generating any required data files.</p>
+
+      <h3 class="subhead">Three types of build</h3>
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Build types">
+          <button type="button" role="tab">Nightly / complete</button>
+          <button type="button" role="tab">Partial</button>
+          <button type="button" role="tab">Final</button>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <h3>Complete (nightly) build</h3>
+          <ul>
+            <li>With an automated tool, the build of a complex system is greatly eased: the tool processes the build cycle according to the build file.</li>
+            <li>For large, complex software a complete build can take more than 6 or 7 hours.</li>
+            <li>Because of that, builds are often run at night, hence &ldquo;nightly builds&rdquo;.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <h3>Partial build</h3>
+          <ul>
+            <li>During the test phase, bugs are found and fixed daily.</li>
+            <li>Not all source code is affected, so a complete rebuild is not needed.</li>
+            <li>Extreme care must be observed in partial builds.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <h3>Final build</h3>
+          <ul>
+            <li>When development is complete, a complete rebuild from the entire source is performed.</li>
+            <li>It must target the users&rsquo; run-time environment, not just the developers&rsquo;.</li>
+            <li>Software that runs well on a developer&rsquo;s system can still fail on a user&rsquo;s because of environment differences.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANNING -->
+  <section id="planning" class="section">
+    <div class="container">
+      <h2>SCM planning</h2>
+      <p class="section-intro">Planning begins in the early coding phases of a project. Its outcome is the <strong>SCM plan (SCMP)</strong>, which may be stretched or revised during the project. The SCMP can follow a public standard such as IEEE 828 or an organization&rsquo;s own.</p>
+      <div class="grid grid-2">
+        <article class="card"><h3>Documents</h3><p>Defines the types of documents to be managed and a document naming scheme.</p></article>
+        <article class="card"><h3>Responsibility</h3><p>Defines who is responsible for the process and for the creation of baselines.</p></article>
+        <article class="card"><h3>Policies</h3><p>Fixes policies for version management and change control.</p></article>
+        <article class="card"><h3>Tools &amp; records</h3><p>Defines the tools to use, and a configuration management database for recording configuration information.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools" class="section alt">
+    <div class="container">
+      <h2>SCM tools</h2>
+      <h3 class="subhead">Key features</h3>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Concurrency management</h3>
+          <p>Concurrent operation means tasks happening at the same time. In SCM it means the same file being edited by multiple people at once.</p>
+        </article>
+        <article class="card">
+          <h3>Version control</h3>
+          <p>Archives every change to a file, logs who made it, and lets you roll back to a previous version when something goes wrong.</p>
+        </article>
+        <article class="card">
+          <h3>Synchronization</h3>
+          <p>Check out files or an entire repository copy, work on them, and check changes back in. Sync your local copy to stay current with teammates.</p>
+        </article>
+      </div>
+
+      <h3 class="subhead">Popular tools</h3>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Git</h3>
+          <p>Free, open-source version control designed to handle all types of projects with speed and efficiency.</p>
+          <a class="btn btn-small" href="https://git-scm.com/" target="_blank" rel="noopener">git-scm.com</a>
+        </article>
+        <article class="card">
+          <h3>Azure DevOps Server / TFS</h3>
+          <p>A group of tools and technologies that lets a team collaborate and coordinate to build a product.</p>
+          <a class="btn btn-small" href="https://azure.microsoft.com/en-us/services/devops/server/" target="_blank" rel="noopener">Azure DevOps</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTING & QA -->
+  <section id="testing" class="section">
+    <div class="container">
+      <h2>Software testing &amp; quality assurance</h2>
+      <p class="section-intro">Testing evaluates product quality, and improves it, by identifying defects and problems. Ideal processes, people, tools and conditions are rarely all met, so testing &mdash; along the way and at the end &mdash; is an ongoing process.</p>
+
+      <div class="grid grid-3">
+        <article class="card accent-1">
+          <h3>Software testing</h3>
+          <p>A set of techniques for detecting and correcting errors in a software product.</p>
+        </article>
+        <article class="card accent-2">
+          <h3>Quality assurance (QA)</h3>
+          <p>All activities designed to measure and improve quality in a product, including the whole process, training and preparation of the team.</p>
+        </article>
+        <article class="card accent-3">
+          <h3>Quality control (QC)</h3>
+          <p>Activities that verify the quality of the product, detect faults or defects, and ensure defects are fixed prior to release.</p>
+        </article>
+      </div>
+
+      <h3 class="subhead">Error &rarr; fault &rarr; failure</h3>
+      <div class="flow" aria-label="Error, fault, failure">
+        <div class="flow-step"><strong>Error</strong><span>A mistake made by an engineer or programmer</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Fault</strong><span>A condition that may cause a failure</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step red"><strong>Failure</strong><span>The system cannot perform a function according to its specification</span></div>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Verification</h3>
+          <p>Checking that a software product conforms to its requirements and specifications.</p>
+        </article>
+        <article class="card">
+          <h3>Validation</h3>
+          <p>Checking that the finished product meets the users&rsquo; requirements and specifications.</p>
+        </article>
+      </div>
+
+      <h3 class="subhead">Purposes of testing</h3>
+      <ul>
+        <li>Find defects so they can be corrected or mitigated. The goal is to find faults, the more the better.</li>
+        <li>Give a general assessment of quality: some assurance the product works for many considered cases, and an estimate of the faults that may remain.</li>
+      </ul>
+
+      <h3 class="subhead">Error detection techniques</h3>
+      <ul class="chips big">
+        <li>Testing</li>
+        <li>Inspections &amp; reviews</li>
+        <li>Formal methods</li>
+        <li>Static analysis</li>
+      </ul>
+
+      <h3 class="subhead">Testing techniques: who, what, why, how</h3>
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Testing questions">
+          <button type="button" role="tab">Who tests?</button>
+          <button type="button" role="tab">What is tested?</button>
+          <button type="button" role="tab">Why test?</button>
+          <button type="button" role="tab">How to test?</button>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <ul>
+            <li><strong>Programmers</strong> create and run test cases as they write code, to convince themselves it works.</li>
+            <li><strong>Testers</strong> are technical people whose role is to write test cases and make sure they are executed.</li>
+            <li><strong>Users</strong> help detect usability problems and expose the software to a broad range of real-world inputs.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <ul>
+            <li><strong>Unit testing</strong> tests individual units, such as a single method or class.</li>
+            <li><strong>Functional testing</strong> checks that units put together work as a functional unit.</li>
+            <li><strong>Integration &amp; system testing</strong> tests the integrated functionality of the complete system.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <ul>
+            <li><strong>Acceptance</strong>: formal testing by the customer before accepting (and paying for) the product.</li>
+            <li><strong>Conformance</strong>: testing against a set of standards or policies.</li>
+            <li><strong>Configuration</strong>: combinations of software, databases and networks.</li>
+            <li><strong>Performance</strong>: the program meets its performance specifications.</li>
+            <li><strong>Stress</strong>: the program behaves correctly and degrades gracefully under stress.</li>
+          </ul>
+        </div>
+        <div role="tabpanel" class="tabpanel card">
+          <ul>
+            <li>Intuition or instinct.</li>
+            <li>Specification-based: from the specification alone, without looking at the code.</li>
+            <li>Coverage-based: define a measure of code coverage, then design test cases to reach it.</li>
+            <li>Regression: reuse the test cases from a previous version on the new version.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="subhead">Test-design techniques</h3>
+      <div class="grid grid-wide">
+        <article class="card">
+          <h4>Equivalence-class partitioning</h4>
+          <p>A specification-based, black-box technique that divides input into classes deemed equivalent for finding errors. If the program fails for one member of a class, expect it to fail for all; if it is correct for one, expect it to be correct for all.</p>
+        </article>
+        <article class="card">
+          <h4>Boundary value analysis</h4>
+          <p>Uses the same classes but tests at the boundary, just inside it and just outside it. It may generate a high number of test cases.</p>
+        </article>
+        <article class="card">
+          <h4>Path analysis</h4>
+          <p>A reproducible, traceable and countable technique, often white-box, where test cases come from the actual code or detailed design. It involves two tasks: analysis and determination.</p>
+        </article>
+        <article class="card">
+          <h4>Combination of conditions</h4>
+          <p>Testing every combination is rarely practical, so generate just enough combinations to cover all pairs of values while keeping risk manageable.</p>
+        </article>
+      </div>
+
+      <h3 class="subhead">Try it: boundary value analysis</h3>
+      <p>Say a form accepts ages from a minimum to a maximum. Change the range and see which values you should test. This tool uses the same <code>boundaryValues()</code> and <code>classify()</code> functions that Jest tests in the pipeline.</p>
+      <div class="builder card">
+        <div class="builder-form">
+          <label>Valid minimum
+            <input id="bvaMin" type="number" step="1" value="18">
+          </label>
+          <label>Valid maximum
+            <input id="bvaMax" type="number" step="1" value="60">
+          </label>
+        </div>
+        <div class="builder-out">
+          <span class="label">Test values</span>
+          <table class="bva-table">
+            <thead><tr><th>Value</th><th>Expected</th></tr></thead>
+            <tbody id="bvaRows"></tbody>
+          </table>
+          <p id="bvaMsg" class="note" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TDD, REVIEWS, STATIC ANALYSIS -->
+  <section id="tdd" class="section alt">
+    <div class="container">
+      <h2>Test-driven development &amp; reviews</h2>
+      <p class="section-intro">TDD is the practice of writing the unit tests <em>before</em> the code, then using them to make sure the code works. You first state the requirement as a test case, then implement it, which keeps you writing small pieces of code that are always covered by tests.</p>
+
+      <div class="flow" aria-label="TDD cycle">
+        <div class="flow-step"><strong>1. Write a test</strong><span>State the requirement</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step red"><strong>2. See it fail</strong><span>Red</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step green"><strong>3. Make it pass</strong><span>Green</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>4. Re-run all tests</strong><span>No regressions</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>5. Refactor</strong><span>Make it pretty</span></div>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Writing valuable tests</h3>
+          <ul>
+            <li><strong>GIVEN</strong> the initial conditions,</li>
+            <li><strong>WHEN</strong> something occurs that needs testing,</li>
+            <li><strong>THEN</strong> what is the expected response?</li>
+          </ul>
+          <p>Keep tests short and to the point, so they describe the expected behavior of the unit.</p>
+        </article>
+        <article class="card">
+          <h3>Test each behavior once</h3>
+          <ul>
+            <li>Testing the same behavior twice does not make the software more likely to work.</li>
+            <li>If one change breaks twenty tests, you cannot tell what is broken. A single failing test makes the bug easy to find.</li>
+            <li>Each test must be independent of the others.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3 class="subhead">TDD in this project</h3>
+      <p>The same idea, written with Jest (the lecture used pytest, JUnit and PHPUnit):</p>
+<pre><code>test("returns boundary, just inside and just outside values", () =&gt; {
+  // GIVEN a valid range of 18 to 60
+  // WHEN we ask for its boundary values
+  // THEN we get the values around both boundaries
+  expect(boundaryValues(18, 60)).toEqual([17, 18, 19, 59, 60, 61]);
+});</code></pre>
+
+      <h3 class="subhead">Inspections and reviews</h3>
+      <p>Having code reviewed by a team of developers is a cost-effective way to detect errors. Software inspections are detailed reviews of work in progress, following the steps developed by Michael Fagan at IBM:</p>
+      <ol class="steps">
+        <li><strong>Planning:</strong> an inspection team and a moderator are designated, and materials are distributed days before the meeting.</li>
+        <li><strong>Overview:</strong> a walk-through of the work product (may be skipped if everyone is familiar with the project).</li>
+        <li><strong>Preparation:</strong> every inspector studies the work product thoroughly; checklists may help.</li>
+        <li><strong>Examination:</strong> a meeting where the inspectors review the product together.</li>
+        <li><strong>Rework:</strong> the author corrects all defects.</li>
+        <li><strong>Follow-up:</strong> the moderator checks the corrections, or the work is inspected again.</li>
+      </ol>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Formal methods</h3>
+          <p>Mathematical techniques used to prove with absolute certainty that a program works, or that an implementation conforms to a specification. They take considerable effort to master and do not apply to all programs.</p>
+        </article>
+        <article class="card">
+          <h3>Static analysis</h3>
+          <p>Examines the static structure of executable and non-executable files to find error-prone conditions. It is usually automatic, and a person reviews the results to remove false positives. <strong>The ESLint step in this site&rsquo;s pipeline is static analysis.</strong></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section id="pipeline" class="section">
+    <div class="container">
+      <h2>This site practices what it teaches</h2>
+      <p class="section-intro">This page is itself a configuration-managed artifact. Every push to <code>main</code> triggers a GitHub Actions workflow that lints, tests, packages and deploys it.</p>
+
+      <div class="flow" aria-label="CI/CD pipeline">
+        <div class="flow-step"><strong>Push</strong><span>Commit to main</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Lint</strong><span>ESLint quality gate</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Test</strong><span>Jest quality gate</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step"><strong>Package</strong><span>Assemble dist/</span></div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="flow-step gold"><strong>Deploy</strong><span>GitHub Pages</span></div>
+      </div>
+      <p class="note">Deployment only happens if <strong>both</strong> the lint job and the test job pass. A missing semicolon or a failing Jest test stops the pipeline, so the broken version is never published.</p>
+
+      <div class="card build-info">
+        <span class="label">Current build</span>
+        <p id="buildInfo" class="mono">Loading build info&hellip;</p>
+      </div>
+
+      <div class="card page-check">
+        <span class="label">Page self-check (runs when this page loads)</span>
+        <p id="pageCheckSummary" class="mono">Running checks&hellip;</p>
+        <ul id="pageCheckList" class="check-list"></ul>
+        <p class="note">This is the function covered by the Jest tests: <code>runPageLoadChecks()</code> in <code>js/quality.js</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="section alt">
+    <div class="container">
+      <h2>Self-check quiz</h2>
+      <p class="section-intro">Eight quick questions across both lectures.</p>
+      <div id="quizRoot" class="quiz"></div>
+      <noscript><p>The quiz needs JavaScript enabled.</p></noscript>
+    </div>
+  </section>
+
+  <!-- RECAP -->
+  <section id="recap" class="section">
+    <div class="container">
+      <h2>To recap</h2>
+      <ul class="recap">
+        <li>A large, complex software project requires proper management of all the artifacts it generates.</li>
+        <li>A configuration management framework has two models: the <strong>naming model</strong> and the <strong>storage and access model</strong>.</li>
+        <li>Coupled with the build and integration process, these let us manage software piece parts and produce different releases for users.</li>
+        <li>Producing high-quality software means detecting and correcting errors through verification, testing, inspections and reviews, formal methods and static analysis.</li>
+      </ul>
+
+      <h3 class="subhead">References</h3>
+      <ul class="refs">
+        <li>Tsui, F., Karam, O. and Bernal, B. <em>Essentials of Software Engineering</em>. Jones and Bartlett Learning.</li>
+        <li>Pressman, R. <em>Software Engineering: A Practitioner&rsquo;s Approach</em>. McGraw-Hill Series in Computer Science.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Made for SEN02 &middot; BSCS 3-A &middot; by <strong>Jan Emil Stenland</strong></p>
+    <p class="small">Lecture content by Andrew Joseph Ramos. Linted, tested and deployed with GitHub Actions to GitHub Pages.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "scm-study-site",
+  "version": "1.0.0",
+  "description": "Static study site on Software Configuration Management and Software Testing, linted, tested and deployed to GitHub Pages with GitHub Actions.",
+  "private": true,
+  "scripts": {
+    "lint": "eslint js tests",
+    "test": "jest",
+    "serve": "npx http-server . -p 8080"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "js/quality.js"
+    ]
+  }
+}
