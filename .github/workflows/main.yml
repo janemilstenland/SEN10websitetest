@@ -1,0 +1,98 @@
+name: Lint, Package and Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run ESLint
+        run: npm run lint
+
+  test:
+    name: Run Jest tests
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run Jest
+        run: npm test -- --ci --coverage
+
+  build:
+    name: Package site
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Assemble dist/ folder
+        run: |
+          mkdir -p dist
+          cp index.html dist/
+          cp -r css js dist/
+          touch dist/.nojekyll
+          printf '{\n  "commit": "%s",\n  "run": "%s",\n  "builtAt": "%s"\n}\n' \
+            "${GITHUB_SHA::7}" "${GITHUB_RUN_NUMBER}" "$(date -u +'%Y-%m-%d %H:%M UTC')" \
+            > dist/build-info.json
+          cat dist/build-info.json
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Keep a downloadable copy of the package
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-package
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
