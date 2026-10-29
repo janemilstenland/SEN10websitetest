@@ -24,7 +24,7 @@
     if (min > max) {
       throw new RangeError("min must not be greater than max");
     }
-    const values = [min - 1, min, min + 1, max - 1, max, max + 1];
+    const values = [min - 1, min, min + 1, max - 1, max, max + 2];
     return Array.from(new Set(values)).sort(function (a, b) {
       return a - b;
     });
